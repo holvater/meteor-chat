@@ -1,0 +1,44 @@
+<head>
+  <title>Let's grab a coffee(script)</title>
+</head>
+
+<body>
+  <h3>Let's grab a coffee(script)</h3>
+  {{ loginButtons }}
+  {{> messages}}
+
+  {{> entry}}
+
+  <a href="https://github.com/tomblomfield/meteor-chat">
+    Check out the source-code on github
+  </a>
+</body>
+
+<template name="entry">
+  <p>
+  {{#if registered}}
+    <input type="text" id="name" value="{{currentUser.username}}" disabled/>
+    <input type="text" id="messageBox" placeholder="What do you want to say?"/>
+  {{else}}
+    <input type="text" id="name" placeholder="Your name" disabled/>
+    <input type="text" id="messageBox" placeholder="What do you want to say?" disabled/>
+  {{/if}}
+  </p>
+</template>
+
+<template name="messages">
+  <div id="chat">
+    {{#each messages}}
+      {{> message}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="message">
+  <p>{{name}}: {{message}}
+  {{#if deletable}}
+  &nbsp;&nbsp;<a href="#">X</a>
+  <input type="hidden" id="_id" value="{{_id}}"/>
+  {{/if}}
+  </p>
+</template>
