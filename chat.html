@@ -1,27 +1,29 @@
 <head>
-  <title>Let's grab a coffee(script)</title>
+  <title>Meteor + coffee</title>
 </head>
 
 <body>
-  <h3>Let's grab a coffee(script)</h3>
-  {{ loginButtons }}
-  {{> messages}}
+  <div>
+    <h3>Meteor + coffee</h3>
+    {{ loginButtons }}
+    {{> messages}}
 
-  {{> entry}}
+    {{> entry}}
 
-  <a href="https://github.com/tomblomfield/meteor-chat">
-    Check out the source-code on github
-  </a>
+    <a href="https://github.com/tomblomfield/meteor-chat">
+      Check out the source-code on github
+    </a>
+  </div>
 </body>
 
 <template name="entry">
   <p>
   {{#if registered}}
-    <input type="text" id="name" value="{{currentUser.username}}" disabled/>
-    <input type="text" id="messageBox" placeholder="What do you want to say?"/>
+    <input class="textBox" type="text" id="name" value="{{currentUser.username}}" disabled/>
+    <input class="textBox" type="text" id="messageBox" placeholder="What do you want to say?"/>
   {{else}}
-    <input type="text" id="name" placeholder="Your name" disabled/>
-    <input type="text" id="messageBox" placeholder="What do you want to say?" disabled/>
+    <input class="textBox" type="text" id="name" placeholder="Your name" disabled/>
+    <input class="textBox" type="text" id="messageBox" placeholder="What do you want to say?" disabled/>
   {{/if}}
   </p>
 </template>
@@ -35,9 +37,9 @@
 </template>
 
 <template name="message">
-  <p>{{name}}: {{message}}
+  <p><span class="name">{{name}}</span>:<span class="message">{{message}}</span>
   {{#if deletable}}
-  &nbsp;&nbsp;<a href="#">X</a>
+  &nbsp;&nbsp;<a href="#" class="delete">X</a>
   <input type="hidden" id="_id" value="{{_id}}"/>
   {{/if}}
   </p>

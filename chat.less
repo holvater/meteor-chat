@@ -1,0 +1,61 @@
+@base:#4E76ED;
+@lightBase:lighten(@base,20%);
+@darkBase:darken(saturate(@base,20%),35%);
+
+@stdWid:600px;
+@wide: 800px;
+@narrow: 400px;
+
+@useWidth: @wide;
+@nameWidth:180px;
+
+.center(@wid:@stdWid){
+    width: @wid;
+    margin: 15px auto;
+}
+.setFont(@weight: normal, @size: 18px, @family: 'Verdana,Arial,Sans'){
+    font: @weight @size @family;
+}
+
+body {
+    background: @base;
+    font-family: "Tahoma";
+    div{
+        .center(@useWidth);
+    }
+}
+
+span{
+    &.name{
+        font-weight: bolder;
+    }
+    &.message{
+        color:@darkBase;
+    }
+    .setFont();
+}
+
+input{
+    &.textBox{
+        background: @lightBase;
+        color:black;
+        font-weight: bold;
+        .setFont(bold, 14px);
+    }
+    &#name {
+        width:@nameWidth ;
+    }
+    &#messageBox {
+        width:@useWidth - @nameWidth - 15px;
+        .setFont(normal,14px, "Times");
+    }
+}
+
+
+#chat {
+    background: @lightBase;
+    height: 300px;
+    overflow: scroll;
+    padding: 10px 10px 40px 10px;
+    border: 1px black solid;
+}
