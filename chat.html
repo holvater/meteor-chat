@@ -3,44 +3,68 @@
 </head>
 
 <body>
-  <div>
+  {{>meteorChat}}
+</body>
+
+<template name="meteorChat">
+  <div class="container-fluid">
     <h3>Meteor + coffee</h3>
     {{ loginButtons }}
-    {{> messages}}
-
-    {{> entry}}
-
+    <div class="chatBox">
+      <div class="row-fluid chat">
+        <div>
+        {{> connectedUsers}}
+        </div>
+        <div>
+        {{> messages}}
+      </div>
+      </div>
+      {{> entry}}
+    </div>
     <a href="https://github.com/tomblomfield/meteor-chat">
       Check out the source-code on github
     </a>
-  </div>
-</body>
+  </div>  
+</template>
+
 
 <template name="entry">
-  <p>
-  {{#if registered}}
-    <input class="textBox" type="text" id="name" value="{{currentUser.username}}" disabled/>
-    <input class="textBox" type="text" id="messageBox" placeholder="What do you want to say?"/>
-  {{else}}
-    <input class="textBox" type="text" id="name" placeholder="Your name" disabled/>
-    <input class="textBox" type="text" id="messageBox" placeholder="What do you want to say?" disabled/>
-  {{/if}}
-  </p>
+  <div class="row-fluid">
+    {{#if registered}}
+    <input class="textBox span3" type="text" id="name" value="{{currentUser.username}}" disabled/>
+    <input class="textBox span9" type="text" id="messageBox" placeholder="What do you want to say?"/>
+    {{else}}
+    <input class="textBox span3" type="text" placeholder="Your name" disabled/>
+    <input class="textBox span9" type="text" placeholder="What do you want to say?" disabled/>
+    {{/if}}
+  </div>
+</template>
+
+<template name="connectedUsers">
+  <div id="connected" class="span3">
+    <ul>
+      {{#each users}}
+      <li class="user">
+        {{user}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="messages">
-  <div id="chat">
+  <div id="chat" class="span9">
     {{#each messages}}
-      {{> message}}
+    {{> message}}
     {{/each}}
   </div>
 </template>
 
 <template name="message">
   <p><span class="name">{{name}}</span>:<span class="message">{{message}}</span>
-  {{#if deletable}}
-  &nbsp;&nbsp;<a href="#" class="delete">X</a>
-  <input type="hidden" id="_id" value="{{_id}}"/>
-  {{/if}}
+    {{#if deletable}}
+    &nbsp;&nbsp;<a href="#" class="delete">X</a>
+    <input type="hidden" id="_id" value="{{_id}}"/>
+    {{/if}}
   </p>
 </template>

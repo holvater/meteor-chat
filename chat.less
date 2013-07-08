@@ -13,16 +13,21 @@
     width: @wid;
     margin: 15px auto;
 }
+
 .setFont(@weight: normal, @size: 18px, @family: 'Verdana,Arial,Sans'){
     font: @weight @size @family;
+}
+
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
 }
 
 body {
     background: @base;
     font-family: "Tahoma";
-    div{
-        .center(@useWidth);
-    }
+
 }
 
 span{
@@ -37,25 +42,58 @@ span{
 
 input{
     &.textBox{
-        background: @lightBase;
+       /* background: @lightBase;
         color:black;
         font-weight: bold;
-        .setFont(bold, 14px);
+        .setFont(bold, 14px);*/
     }
     &#name {
-        width:@nameWidth ;
+        //width:@nameWidth ;
     }
     &#messageBox {
-        width:@useWidth - @nameWidth - 15px;
+        //width:@useWidth - @nameWidth - 15px;
         .setFont(normal,14px, "Times");
+    }
+}
+
+.chatBox{
+    .border-radius(5px);
+    background: darken(@darkBase,8%);
+    padding: 10px;
+    height: 480px;
+}
+
+.chat{
+    height: 400px;
+}
+
+ul{
+    list-style-type: none;
+}
+li{
+    &.user{
+        .setFont(normal, 18px, "Tahoma");
     }
 }
 
 
 #chat {
     background: @lightBase;
-    height: 300px;
+    height:400px;
     overflow: scroll;
-    padding: 10px 10px 40px 10px;
-    border: 1px black solid;
+    padding: 10px;
+    margin:20px auto;
+    //border: 1px black solid;
+}
+#connected {
+    background: @lightBase;
+    height: 400px;
+    overflow: scroll;
+    padding: 10px;
+    margin:20px 10px 0px 0px;
+    //border: 1px black solid;
+}
+
+a{
+    color:@darkBase;
 }
